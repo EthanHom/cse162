@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "ethanhom.cse_162.activityrecognitionlab3_2"
+    compileSdkVersion 34
+    defaultConfig {
+        applicationId "ethanhom.cse_162.activityrecognitionlab3_2"
+        minSdkVersion 24
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+}
+
+dependencies {
+        implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+//    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    //noinspection OutdatedLibrary
+    implementation ('com.google.android.gms:play-services-location:15.0.0') {
+        exclude group:"com.android.support"
+    }
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+
+
+//plugins {
+//    alias(libs.plugins.android.application)
+//}
+//
+//android {
+//    namespace 'ethanhom.cse_162.activityrecognitionlab3_2'
+//    compileSdk 36
+//
+//    defaultConfig {
+//        applicationId "ethanhom.cse_162.activityrecognitionlab3_2"
+//        minSdk 24
+//        targetSdk 36
+//        versionCode 1
+//        versionName "1.0"
+//
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_11
+//        targetCompatibility JavaVersion.VERSION_11
+//    }
+//}
+//
+//dependencies {
+//
+//    implementation libs.appcompat
+//    implementation libs.material
+//    testImplementation libs.junit
+//    androidTestImplementation libs.ext.junit
+//    androidTestImplementation libs.espresso.core
+//}

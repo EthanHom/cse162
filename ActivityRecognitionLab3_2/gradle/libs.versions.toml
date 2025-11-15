@@ -1,0 +1,25 @@
+[versions]
+agp = "8.13.0"
+appcompatVersion = "1.1.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.7.1"
+localbroadcastmanager = "1.1.0"
+material = "1.13.0"
+playServicesLocation = "15.0.0"
+
+[libraries]
+appcompat-v110 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+localbroadcastmanager = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "localbroadcastmanager" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+x-x-x = { module = "com.android.tools.build.gradle:4.2.0" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+
