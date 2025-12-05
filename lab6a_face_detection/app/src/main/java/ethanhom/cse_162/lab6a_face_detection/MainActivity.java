@@ -35,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
     Canvas canvas;
     Bitmap mutableBitmap;
 
+
+//    Prepare for the image detection
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        configure the detection options
         FaceDetectorOptions highAccuracyOpts =
                 new FaceDetectorOptions.Builder()
                         .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
