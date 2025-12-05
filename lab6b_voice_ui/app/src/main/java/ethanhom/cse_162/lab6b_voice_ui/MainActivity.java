@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 //    declaration
     private TextToSpeech textToSpeech;
 
+    // initialization: request permissions, setup the initial calendar view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     txtText.setText("");
                 } catch (ActivityNotFoundException a) {
                     Toast t = Toast.makeText(getApplicationContext(),
-                            "Opps! Your device doesn't support Speech to Text",
+                            "Oops! Your device doesn't support Speech to Text",
                             Toast.LENGTH_SHORT);
                     t.show();
                 }
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Create an intent that can start the Speech Recognizer activity
     private void displaySpeechRecognizer() {
+        // Exception Handling for phones without the Google App (com.google.android.googlequicksearchbox)
         try {
 //            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 //            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -116,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
 //            startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE);
 
 
+            // Free-form voice-to-text conversion (the displaySpeechRecognizer function)
+            //  - generate an intent to invoke the Android speech recognition module
+            //  - RecognizerIntent
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -146,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case RESULT_SPEECH: {
+
+                // Receive the texts converted from speech
+                //  - This callback is invoked when the Speech Recognizer returns.
+                //  - spokenText is what you have spoken.
                 if (resultCode == RESULT_OK && null != data) {
 
                     ArrayList<String> text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -159,18 +168,32 @@ public class MainActivity extends AppCompatActivity {
                         Date date = new Date(unixTime);
                         String dateString = date.toString();
 
-//                        speak method from documentation
+                        //  speak method from documentation
                         textToSpeech.speak(dateString, TextToSpeech.QUEUE_FLUSH, null, null);
                     }
 
                     if (text.get(0).equals("tomorrow")) {
                         long unixTime = System.currentTimeMillis();
                         calendarView.setDate(unixTime + 86400000);
+
+                        // get date then change to string
+                        Date date = new Date(unixTime + 86400000);
+                        String dateString = date.toString();
+
+                        //  speak method from documentation
+                        textToSpeech.speak(dateString, TextToSpeech.QUEUE_FLUSH, null, null);
                     }
 
                     if (text.get(0).equals("day after tomorrow")) {
                         long unixTime = System.currentTimeMillis();
                         calendarView.setDate(unixTime + 172800000);
+
+                        // get date then change to string
+                        Date date = new Date(unixTime + 172800000);
+                        String dateString = date.toString();
+
+                        //  speak method from documentation
+                        textToSpeech.speak(dateString, TextToSpeech.QUEUE_FLUSH, null, null);
                     }
 
                     if (text.get(0).equals("call emergency")) {

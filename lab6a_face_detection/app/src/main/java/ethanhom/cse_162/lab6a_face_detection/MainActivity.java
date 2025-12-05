@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                                         Rect bounds = face.getBoundingBox();
                                         Paint paint = new Paint();
                                         paint.setAntiAlias(true);
-                                        paint.setColor(Color.RED);
+                                        paint.setColor(Color.BLUE);
                                         paint.setStyle(Paint.Style.STROKE);
                                         paint.setStrokeWidth(8);
 
