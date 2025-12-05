@@ -50,25 +50,36 @@ public class MainActivity extends AppCompatActivity {
                         .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
                         .build();
 
+//        read the image
         Bitmap bm=getBitmapFromAssests("faces.png");
 
+//        display the image
         iw = (ImageView) findViewById(R.id.image_view);
         iw.setImageBitmap(bm);
 
+//        create a copy of the face image to draw upon
         mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
         canvas=new Canvas(mutableBitmap);
 
-        InputImage image = InputImage.fromBitmap(bm, 0);
+        InputImage image = InputImage.fromBitmap(bm, 0);    // convert the image to correct format using InputImage object
         Log.d("TAG", "before recognition");
-        FaceDetector detector = FaceDetection.getClient(highAccuracyOpts);
+        FaceDetector detector = FaceDetection.getClient(highAccuracyOpts);      // get an instance of FaceDetector
+
+//        process the image
+
 
         Task<List<Face>> result =
                 detector.process(image)
+                        // If the face detection operation succeeds, a list of Face objects are passed to the success listener.
+                        // Each Face object represents a face that was detected in the image.
+                        // For each face, you can get its bounding coordinates in the input image, as well as any other information you configured the face detector to find.
+                        // In this lab, we want to plot a rectangle for each face.
                         .addOnSuccessListener(
                             new OnSuccessListener<List<Face>>() {
                                 @Override
                                 public void onSuccess (List<Face> faces) {
                                     Log.d("TAG", "on success recognition succeed");
+                                    // use the canvas to draw the detection boxes
                                     for (Face face : faces) {
                                         Rect bounds = face.getBoundingBox();
                                         Paint paint = new Paint();
